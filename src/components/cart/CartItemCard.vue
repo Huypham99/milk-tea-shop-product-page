@@ -11,7 +11,7 @@
             {{ item.productName }}
           </h3>
           <button @click="$emit('remove')"
-            class="p-1 text-gray-400 hover:text-red-500 transition-colors ml-2 flex-shrink-0">
+            class="p-1 text-gray-400 hover:text-red-500 transition-colors ml-2 flex-shrink-0 cursor-pointer">
             <X class="w-4 h-4" />
           </button>
         </div>

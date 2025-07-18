@@ -104,17 +104,15 @@
             @variant-selected="selectVariantOption" />
 
           <!-- Product Toppings Selection -->
-          <ProductToppingSelect
-            v-if="product.availableToppings && product.availableToppings.length > 0"
-            :availableToppingIds="product.availableToppings"
-            :selectedToppings="selectedToppings"
+          <ProductToppingSelect v-if="product.availableToppings && product.availableToppings.length > 0"
+            :availableToppingIds="product.availableToppings" :selectedToppings="selectedToppings"
             @topping-selected="handleToppingSelected" />
         </div>
 
         <!-- Fixed Footer - Action Buttons -->
         <div class="flex-shrink-0 p-6 border-t border-gray-200 bg-white rounded-b-2xl">
           <button @click="handleAddToCart" :disabled="!canAddToCart"
-            class="w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-violet-600 text-white hover:bg-violet-700 focus:ring-violet-500">
+            class="w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-violet-600 text-white hover:bg-violet-700 focus:ring-violet-500 cursor-pointer">
             <ShoppingCart class="w-4 h-4 mr-2" />
             {{ product.inventory.status === 'out_of_stock' ? 'Hết hàng' : `Thêm ${quantity} vào giỏ` }}
           </button>

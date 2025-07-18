@@ -47,19 +47,13 @@
 
     <!-- Action Buttons -->
     <div class="mt-6 space-y-3">
-      <button
-        @click="$emit('checkout')"
-        :disabled="isEmpty"
-        class="w-full bg-violet-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-violet-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
-      >
+      <button @click="$emit('checkout')" :disabled="isEmpty"
+        class="w-full bg-violet-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-violet-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 cursor-pointer">
         {{ isEmpty ? 'Giỏ hàng trống' : 'Thanh toán' }}
       </button>
 
-      <button
-        @click="$emit('clear-cart')"
-        :disabled="isEmpty"
-        class="w-full border border-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-      >
+      <button @click="$emit('clear-cart')" :disabled="isEmpty"
+        class="w-full border border-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 cursor-pointer">
         Xóa tất cả
       </button>
     </div>

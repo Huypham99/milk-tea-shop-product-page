@@ -46,7 +46,7 @@
         <!-- Cart Header -->
         <div class="p-4 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
           <h2 class="text-lg font-semibold text-gray-900">Giỏ hàng</h2>
-          <button @click="toggleCart" class="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+          <button @click="toggleCart" class="p-1 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
             <X class="w-5 h-5" />
           </button>
         </div>
