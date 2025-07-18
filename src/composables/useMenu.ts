@@ -1,5 +1,5 @@
 import { Category, MenuFilters, Product, Topping } from '@/types/menu'
-import { computed, reactive, watch, readonly } from 'vue'
+import { computed, reactive, watch } from 'vue'
 import { mockMenuService, PaginationOptions, ApiResponse } from '../services/api/menuService'
 
 type UseMenuOptions = {
@@ -268,7 +268,7 @@ export function useMenu(options: UseMenuOptions = {}) {
   }
 
   return {
-    state: readonly(state),
+    state,
 
     // Computed
     isLoadingProduct,
