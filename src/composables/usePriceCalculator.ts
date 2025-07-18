@@ -1,4 +1,3 @@
-// composables/usePriceCalculator.ts
 import { computed, Ref } from 'vue'
 import type { Product } from '@/types/menu'
 
@@ -22,7 +21,6 @@ export function usePriceCalculator({
 
     let price = product.value.price
 
-    // Add price modifiers from selected variants
     if (!product.value.variants) return price
 
     for (const variant of product.value.variants) {

@@ -1,7 +1,3 @@
-// data/enhancedMockData.ts
-
-import { Cart } from '@/types/cart'
-
 export const mockVariants = {
   size: {
     type: 'size' as const,

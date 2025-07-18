@@ -3,32 +3,24 @@
 
     <!-- Category List -->
     <div class="space-y-1/2">
-      <button
-        v-for="category in categories"
-        :key="category.id"
-        @click="selectCategory(category.id)"
+      <CategoryListSkeleton v-if="loadingCategory" />
+      <button v-else v-for="category in categories" :key="category.id" @click="selectCategory(category.id)"
         class="w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 text-left mb-2 group"
         :class="selectedCategoryId === category.id
           ? 'bg-violet-50 text-primary-700 border-2 border-violet-200 shadow-sm'
-          : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-transparent hover:border-gray-200'"
-      >
+          : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-transparent hover:border-gray-200'">
         <div class="flex items-center space-x-3">
-          <div
-            class="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-            :class="selectedCategoryId === category.id
-              ? 'bg-violet-500 text-white'
-              : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'"
-          >
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center transition-colors" :class="selectedCategoryId === category.id
+            ? 'bg-violet-500 text-white'
+            : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'">
             <component :is="getCategoryIcon(category.id)" class="w-4 h-4" />
           </div>
           <div>
             <div class="font-medium">{{ category.name }}</div>
           </div>
         </div>
-        <ChevronRight
-          class="w-4 h-4 transition-transform duration-200"
-          :class="selectedCategoryId === category.id ? 'rotate-90' : ''"
-        />
+        <ChevronRight class="w-4 h-4 transition-transform duration-200"
+          :class="selectedCategoryId === category.id ? 'rotate-90' : ''" />
       </button>
     </div>
 
@@ -38,18 +30,11 @@
       <div class="mb-6">
         <h2 class="text-lg font-semibold text-gray-900 mb-4">Topping phổ biến</h2>
         <div class="space-y-2">
-          <label
-            v-for="topping in toppings"
-            :key="topping.id"
-            class="flex items-center space-x-2 cursor-pointer group"
-          >
-            <input
-              type="checkbox"
-              :value="topping.id"
-              v-model="selectedToppings"
-              @change="updateToppings"
-              class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
-            />
+          <ToppingListSkeleton v-if="loadingTopping" />
+          <label v-else v-for="topping in toppings" :key="topping.id"
+            class="flex items-center space-x-2 cursor-pointer group">
+            <input type="checkbox" :value="topping.id" v-model="selectedToppings" @change="updateToppings"
+              class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500" />
             <span class="text-sm text-gray-700 group-hover:text-gray-900">
               {{ topping.name }}
             </span>
@@ -57,11 +42,8 @@
         </div>
       </div>
 
-      <button
-        v-if="hasActiveFilters"
-        @click="clearFilters"
-        class="w-full px-4 py-2 text-sm text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-      >
+      <button v-if="hasActiveFilters" @click="clearFilters"
+        class="w-full px-4 py-2 text-sm text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
         Xóa bộ lọc
       </button>
     </div>
@@ -69,15 +51,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { ChevronRight, Coffee, Milk, Apple, Sparkles, Star } from 'lucide-vue-next'
 import { Category, Topping } from '../../types/menu';
+import CategoryListSkeleton from '../skeleton/CategoryListSkeleton.vue';
+import ToppingListSkeleton from '../skeleton/ToppingListSkeleton.vue';
 
 type Props = {
   categories: Category[]
   toppings: Topping[]
   selectedCategoryId?: number
   totalProducts?: number
+  loadingCategory?: boolean
+  loadingTopping?: boolean
 }
 
 type Emits = {

@@ -35,7 +35,7 @@ export function useCartItemBuilder() {
       toppingId,
       name: toppingDetails[toppingId]?.name || '',
       price: toppingDetails[toppingId]?.price || 0,
-      quantity: 1, // Each topping has quantity 1 per item
+      quantity: 1,
     }))
 
     // Create the cart item payload
@@ -51,7 +51,7 @@ export function useCartItemBuilder() {
       toppingsTotal,
       itemSubtotal,
       itemTotal,
-      lineTotal: itemTotal, // lineTotal same as itemTotal since it's already quantity * (base + toppings)
+      lineTotal: itemTotal,
     }
 
     return cartItem

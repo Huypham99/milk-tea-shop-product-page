@@ -72,7 +72,7 @@ const confirmClearCart = () => {
 
 const handleCheckout = () => {
   // Navigate to checkout page
-  router.push('/checkout')
+  alert("Chức năng sẽ được bổ sung sau !!!")
 }
 
 // Initialize cart on mount

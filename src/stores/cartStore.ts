@@ -1,4 +1,3 @@
-// stores/useCartStore.ts
 import { CartItem } from '@/types/cart'
 import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'

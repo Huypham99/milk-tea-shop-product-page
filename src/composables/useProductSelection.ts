@@ -1,4 +1,3 @@
-// composables/useProductSelection.ts
 import { Ref, ref, watch } from 'vue'
 import type { Product } from '@/types/menu'
 
@@ -43,15 +42,12 @@ export function useProductSelection(product: Ref<Product | null>) {
   }
 
   const setDefaultVariants = (newProduct: Product) => {
-    if (newProduct?.variants) {
-      for (const variant of newProduct.variants) {
-        if (variant.required) {
-          const firstAvailableOption = variant.options.find((opt) => opt.available)
-          if (firstAvailableOption) {
-            selectedVariants.value[variant.type] = firstAvailableOption.id
-          }
-        }
-      }
+    if (!newProduct?.variants) return
+    for (const variant of newProduct.variants) {
+      if (!variant.required) return
+      const firstAvailableOption = variant.options.find((opt) => opt.available)
+      if (!firstAvailableOption) return
+      selectedVariants.value[variant.type] = firstAvailableOption.id
     }
   }
 

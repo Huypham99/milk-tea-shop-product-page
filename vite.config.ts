@@ -5,6 +5,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [vue(), vueDevTools()],
+  base: '/milk-tea-shop-product-page/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

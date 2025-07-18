@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue"
+import { ref, watch } from "vue"
 import CartSidebar from "./components/cart/CartSidebar.vue";
 import BaseLayout from './components/layout/BaseLayout.vue';
 import CategorySidebar from './components/menu/CategorySidebar.vue';
@@ -11,12 +11,12 @@ import { useCartStore } from '@/stores/cartStore'
 
 const {
   state,
-  isLoading,
+  isLoadingProduct,
+  isLoadingCategory,
+  isLoadingTopping,
   hasError,
   selectCategory,
   updateToppingsFilter,
-  // searchProducts,
-  // sortProducts,
 } = useMenu({
   autoLoad: true,
   defaultFilters: {},
@@ -25,8 +25,6 @@ const {
 
 const cartStore = useCartStore()
 
-// const searchQuery = ref('')
-// const selectedSort = ref('name-asc')
 const selectedProduct = ref<Product | null>(null)
 const showProductModal = ref(false)
 
@@ -38,15 +36,6 @@ const handleCategorySelect = async (categoryId: number | undefined) => {
 const handleToppingsFilter = async (toppings: string[]) => {
   await updateToppingsFilter(toppings)
 }
-
-// const handleSearch = async () => {
-//   await searchProducts(searchQuery.value)
-// }
-
-// const handleSortChange = async () => {
-//   const [sortBy, sortOrder] = selectedSort.value.split('-')
-//   await sortProducts(sortBy as any, sortOrder as any)
-// }
 
 const handleProductClick = (product: Product) => {
   selectedProduct.value = product
@@ -83,12 +72,12 @@ watch(
     <div class="wrapper">
       <BaseLayout :cartItemCount="cartStore.itemCount">
         <template #categories>
-          <CategorySidebar :categories="state.categories" :toppings="state.toppings"
-            :selected-category-id="state.selectedCategory" @category-select="handleCategorySelect"
-            @topping-filter="handleToppingsFilter" />
+          <CategorySidebar :categories="state.categories" :toppings="state.toppings" :loadingCategory="isLoadingCategory"
+            :loadingTopping="isLoadingTopping" :selected-category-id="state.selectedCategory"
+            @category-select="handleCategorySelect" @topping-filter="handleToppingsFilter" />
         </template>
         <template #products>
-          <ProductGrid :products="state.products" :loading="isLoading" @product-click="handleProductClick" />
+          <ProductGrid :products="state.products" :loading="isLoadingProduct" @product-click="handleProductClick" />
         </template>
         <template #cart>
           <CartSidebar />

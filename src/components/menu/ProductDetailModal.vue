@@ -59,7 +59,7 @@
               <h3 class="font-semibold text-gray-900 mb-3">Số lượng</h3>
               <div class="flex items-center gap-3">
                 <button @click="decreaseQuantity" :disabled="quantity <= 1"
-                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-gray-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-500 hover:border-violet-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer">
                   <Minus class="w-4 h-4 text-gray-600" />
                 </button>
 
@@ -70,7 +70,7 @@
                 </div>
 
                 <button @click="increaseQuantity" :disabled="quantity >= maxQuantity"
-                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-gray-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                  class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-500 hover:border-violet-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer">
                   <Plus class="w-4 h-4 text-gray-600" />
                 </button>
               </div>
@@ -114,7 +114,7 @@
           <button @click="handleAddToCart" :disabled="!canAddToCart"
             class="w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-violet-600 text-white hover:bg-violet-700 focus:ring-violet-500 cursor-pointer">
             <ShoppingCart class="w-4 h-4 mr-2" />
-            {{ product.inventory.status === 'out_of_stock' ? 'Hết hàng' : `Thêm ${quantity} vào giỏ` }}
+            {{ product.inventory.status === 'out_of_stock' ? 'Hết hàng' : `Thêm ${quantity} sản phẩm vào giỏ` }}
           </button>
         </div>
       </div>

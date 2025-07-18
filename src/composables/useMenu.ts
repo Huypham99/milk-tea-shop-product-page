@@ -69,9 +69,11 @@ export function useMenu(options: UseMenuOptions = {}) {
   })
 
   // Computed properties
-  const isLoading = computed(
-    () => state.loading.categories || state.loading.products || state.loading.toppings,
-  )
+  const isLoadingProduct = computed(() => state.loading.products)
+
+  const isLoadingCategory = computed(() => state.loading.categories)
+
+  const isLoadingTopping = computed(() => state.loading.toppings)
 
   const hasError = computed(
     () => state.error.categories || state.error.products || state.error.toppings,
@@ -266,11 +268,12 @@ export function useMenu(options: UseMenuOptions = {}) {
   }
 
   return {
-    // State (readonly)
     state: readonly(state),
 
     // Computed
-    isLoading,
+    isLoadingProduct,
+    isLoadingCategory,
+    isLoadingTopping,
     hasError,
     filteredProductsCount,
     hasActiveFilters,
@@ -293,5 +296,4 @@ export function useMenu(options: UseMenuOptions = {}) {
   }
 }
 
-// Export types for external use
 export type { Category, Product, MenuFilters, PaginationOptions, UseMenuOptions, UseMenuState }

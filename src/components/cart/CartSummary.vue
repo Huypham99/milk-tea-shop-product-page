@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-lg border border-gray-200 p-4">
+  <div class="bg-white rounded-lg border-1 border-gray-300 p-4">
     <h3 class="font-semibold text-gray-900 mb-4">Tóm tắt đơn hàng</h3>
 
     <!-- Order Summary Details -->
